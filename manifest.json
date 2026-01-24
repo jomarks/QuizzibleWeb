@@ -1,0 +1,27 @@
+{
+  "name": "Quizzible - Bible Quiz App",
+  "short_name": "Quizzible",
+  "description": "Test your Bible knowledge with interactive quizzes, learn verses, and compete on leaderboards",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#334155",
+  "theme_color": "#475569",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "categories": ["education", "entertainment"],
+  "prefer_related_applications": false
+}

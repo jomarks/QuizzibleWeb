@@ -23,7 +23,9 @@
         flex: 1;
       }
     </style>
-  <link rel="icon" href="/favicon.ico" /></head>
+  <meta name="theme-color" content="#475569">
+<meta name="description" content="Test your Bible knowledge with interactive quizzes">
+<link rel="icon" href="/favicon.ico" /><link rel="manifest" href="/manifest.json"><meta name="theme-color" content="#1e293b"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"></head>
 
   <body>
     <!-- Use static rendering with Expo Router to support running without JavaScript. -->
@@ -32,6 +34,50 @@
     </noscript>
     <!-- The root element for your Expo app. -->
     <div id="root"></div>
-  <script src="/_expo/static/js/web/index-6461f6c1a8afc01796c67be7c24a456e.js" defer></script>
+  <script src="/_expo/static/js/web/index-f7773e533b182f89ac2b65b72df9e7b6.js" defer></script>
 </body>
 </html>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/service-worker.js')
+      .then(function(registration) {
+        console.log('ServiceWorker registered:', registration.scope);
+        
+        // Check for updates every 5 minutes
+        setInterval(function() {
+          registration.update();
+        }, 5 * 60 * 1000);
+        
+        // Listen for updates
+        registration.addEventListener('updatefound', function() {
+          const newWorker = registration.installing;
+          console.log('New service worker found, installing...');
+          
+          newWorker.addEventListener('statechange', function() {
+            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+              // New service worker is ready, notify user to refresh
+              console.log('New version available! Please refresh the page.');
+              if (confirm('A new version of the app is available. Reload to update?')) {
+                newWorker.postMessage({ type: 'SKIP_WAITING' });
+                window.location.reload();
+              }
+            }
+          });
+        });
+      })
+      .catch(function(err) {
+        console.log('ServiceWorker registration failed:', err);
+      });
+    
+    // Handle service worker controlling the page
+    let refreshing = false;
+    navigator.serviceWorker.addEventListener('controllerchange', function() {
+      if (!refreshing) {
+        refreshing = true;
+        window.location.reload();
+      }
+    });
+  });
+}
+</script>
