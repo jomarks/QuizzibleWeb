@@ -1,4 +1,4 @@
-const CACHE_VERSION = '1788027473'; // Will be replaced during build
+const CACHE_VERSION = '1788030883'; // Will be replaced during build
 const CACHE_NAME = `quizzible-${CACHE_VERSION}`;
 const BASE_PATH = '';
 
